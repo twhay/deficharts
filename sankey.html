@@ -1,0 +1,38 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['sankey']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'From');
+        data.addColumn('string', 'To');
+        data.addColumn('number', 'Addresses');
+        data.addRows([
+          [ 'All', 'Uniswap',  1203313],
+          [ 'All', 'MakerDAO', 70803 ],
+          [ 'All', 'Other',  554270]
+        ]);
+
+        // Sets chart options.
+        var options = {
+            title: 'Ethereum Address Distribution on March 31, 2021',
+            focusTarget: 'category',
+        sankey: {
+        node: { colors: [ '#a61d4c' ] },
+        link: { color: { stroke: 'black', strokeWidth: 1 } }
+        }
+        };
+
+        // Instantiates and draws our chart, passing in some options.
+        var chart = new google.visualization.Sankey(document.getElementById('sankey_basic'));
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+  <body>
+    <div id="sankey_basic" style="width: 900px; height: 300px;"></div>
+  </body>
+</html>
